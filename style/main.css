@@ -1,0 +1,58 @@
+body{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.navbar{
+    height: 100px;
+    width: inherit;
+    background-color: rgb(43, 35, 119);
+    /* margin-bottom: 2px; */
+}
+
+.grids{
+    margin: 2px;
+    flex-grow: 1;
+    height: 100%;
+    width: inherit;
+    /* background-color: khaki; */
+}
+
+.board-row:after {
+    clear: both;
+    width: fit-content;
+    content: "";
+    display: table;
+}
+
+.square {
+    background: #fff;
+    border: 1px solid rgb(187, 187, 187);
+    float: left;
+    /* font-size: 24px; */
+    font-weight: bold;
+    /* line-height: 34px; */
+    /* height: 34px; */
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    /* width: 34px; */
+}
+
+.square:focus {
+    outline: none;
+}
+  
+.square:hover {
+    background-color: coral;
+    transition: 0.8s;
+    /* animation: ease-in; */
+}
+
+.squareSelected {
+    background-color: rgb(92, 80, 255);
+    transition: 0.8s;
+}
