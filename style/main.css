@@ -31,15 +31,12 @@ body{
     background: #fff;
     border: 1px solid rgb(187, 187, 187);
     float: left;
-    /* font-size: 24px; */
     font-weight: bold;
-    /* line-height: 34px; */
-    /* height: 34px; */
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    /* width: 34px; */
+    transition: 0.8s;
 }
 
 .square:focus {
@@ -54,5 +51,5 @@ body{
 
 .squareSelected {
     background-color: rgb(92, 80, 255);
-    transition: 0.8s;
+    /* transition: 0.8s; */
 }

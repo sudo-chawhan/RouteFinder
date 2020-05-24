@@ -1,34 +1,10 @@
 Display = function(gridDiv){
-    this.toggle = false;
+    // this.toggle = false;
     this.gridview = gridDiv;
 };
 
-toggle = false;
-
 Display.prototype = {
     constructor: Display,
-    // handling mouse input
-
-    onMouseOver:function(){    
-        
-        if(toggle){
-            var temp = document.getElementById(this.id);
-            temp.classList.add("squareSelected");
-        }
-    },
-    onMouseUp:function(){
-        toggle = false;
-    },
-    onMouseDown:function(){
-        toggle = true;
-
-        if(toggle){
-            var temp = document.getElementById(this.id);
-            temp.classList.add("squareSelected");
-        }
-    },
-    
-
     // handling display
     make_button:function(h, w, id){
         var button = document.createElement("button");
@@ -49,19 +25,6 @@ Display.prototype = {
                 divi.appendChild(this.make_button(h, w, id));
             }
             this.gridview.appendChild(divi);
-        }
-        this.addMouseEvents(r,c);
-    },
-
-    addMouseEvents:function(r,c){
-        for(i=0;i<r;i++){
-            for(j=0;j<c;j++){
-                id = String(i)+","+String(j);
-                var temp = document.getElementById(id);
-                temp.onmousedown = this.onMouseDown;
-                temp.onmouseup = this.onMouseUp;
-                temp.onmouseover = this.onMouseOver;
-            }
         }
     },
 
