@@ -13,7 +13,6 @@ function main(){
     // might need access to grid state therefore we'll put this in main
     toggle = false;
     var onMouseOver = function(){    
-        console.log("hover");
         
         if(toggle){
             var temp = document.getElementById(this.id);
@@ -43,12 +42,11 @@ function main(){
         }
     };
 
-    logic = new Logic();
+    logic = new Logic(display, m, n);
 
     addMouseEvents(m,n);
 
     var resize = function(){   
-        console.log(toggle); 
         h = window.innerHeight;
         w = window.innerWidth;
         display.resize_grid(m, n, String((h/m))+"px", String((w/n))+"px");
