@@ -14,7 +14,26 @@ Display.prototype = {
         button.setAttribute("id", id);
         return button;
     },
-
+    render:function(gridstate, r, c){
+        for(i=0;i<r;i++){
+            for(j=0;j<c;j++){
+                id = String(i)+","+String(j);
+                var temp = document.getElementById(id);
+                state = gridstate[i*c + j];
+                if(state == 100){
+                    // console.log(i*r+c);
+                    temp.style.backgroundColor = 'red';
+                }else if(state < 100 && state>0){
+                    temp.style.backgroundColor = 'rgb(0,'+String(10*state)+',0)';
+                }else if(state==600){
+                    temp.style.backgroundColor = 'yellow';
+                }
+                else{
+                    temp.style.backgroundColor = 'white';
+                }
+            }
+        }
+    },
     make_grids:function(r, c, h, w){
         
         for(i=0;i<r;i++){

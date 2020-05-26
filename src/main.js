@@ -16,7 +16,7 @@ function main(){
         
         if(toggle){
             var temp = document.getElementById(this.id);
-            temp.classList.add("squareSelected");
+            temp.style.backgroundColor = "rgb(92, 80, 255)";
         }
     };
     var onMouseUp = function(){
@@ -27,7 +27,8 @@ function main(){
 
         if(toggle){
             var temp = document.getElementById(this.id);
-            temp.classList.add("squareSelected");
+            temp.style.backgroundColor = "rgb(92, 80, 255)";
+            // temp.classList.add("squareSelected");
         }
     };
     var addMouseEvents = function(r,c){
@@ -42,9 +43,9 @@ function main(){
         }
     };
 
-    logic = new Logic(display, m, n);
-
     addMouseEvents(m,n);
+    logic = new Logic(display, m, n);
+    logic.update();
 
     var resize = function(){   
         h = window.innerHeight;

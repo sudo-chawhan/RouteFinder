@@ -1,0 +1,19 @@
+{
+  "name": "routefinder",
+  "version": "1.0.0",
+  "description": "Finds the least cost route from start to end.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudo-chawhan/RouteFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudo-chawhan/RouteFinder/issues"
+  },
+  "homepage": "https://github.com/sudo-chawhan/RouteFinder#readme"
+}
