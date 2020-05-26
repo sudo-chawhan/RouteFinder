@@ -10,14 +10,17 @@ display.make_grids(m, n, String((h/m))+"px", String((w/n))+"px");
 
 // making a new logics file
 logic = new Logic(display, m, n);
+logic.refreshScreen();
 
 // handling mouse input
 // might need access to grid state therefore we'll put this in main
 {
     var mouseC = {  // mouse controllers
-        wallc : false,
+        togglec : false,
         startc : false,
-        endc : false
+        startcON: false,
+        endc : false,
+        endcON:false
     };
     var onMouseOver = function(){    
         // handle start
@@ -25,8 +28,18 @@ logic = new Logic(display, m, n);
             return;
         
         // handle wall
-        if(mouseC.wallc){
-            display.make_wall(this.id);
+        if(mouseC.togglec){
+            if(mouseC.startcON){
+                logic.updateStart(this.id);
+                logic.update();
+            }
+            else if(mouseC.endcON){
+                logic.updateEnd(this.id);
+                logic.update();
+            }
+            else{
+                display.make_wall(this.id);
+            }
         }
     };
     var onMouseUp = function(){
@@ -35,7 +48,9 @@ logic = new Logic(display, m, n);
             return;
 
         // hanlde wall
-        mouseC.wallc = false;
+        mouseC.togglec = false;
+        mouseC.startcON = false;
+        mouseC.endcON = false;
     };
     var onMouseDown = function(){
         // handle start
@@ -43,9 +58,17 @@ logic = new Logic(display, m, n);
             return;
 
         // handle wall
-        mouseC.wallc = true;
-        if(mouseC.wallc){
-            display.make_wall(this.id);
+        mouseC.togglec = true;
+        if(mouseC.togglec){
+            if(logic.isStart(this.id)){
+                mouseC.startcON = true;
+            }
+            else if(logic.isEnd(this.id)){
+                mouseC.endcON = true;
+            }
+            else{
+                display.make_wall(this.id);
+            }
         }
     };
     var onMouseClick = function(){
@@ -84,14 +107,14 @@ logic = new Logic(display, m, n);
     startButton.onclick = ()=>{
         mouseC.startc = true;
         mouseC.endc = false;
-        mouseC.wallc = false;
+        mouseC.togglec = false;
         
     };
     var endButton = document.getElementById("endnode");
     endButton.onclick = ()=>{
         mouseC.startc = false;
         mouseC.endc = true;
-        mouseC.wallc = false;
+        mouseC.togglec = false;
     };
 }
 // end of mouse handlers

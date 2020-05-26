@@ -26,6 +26,10 @@ Display.prototype = {
         var temp = document.getElementById(id);
         temp.style.backgroundColor = globalcolors.WALL;
     },
+    make_empty:function(id){
+        var temp = document.getElementById(id);
+        temp.style.backgroundColor = globalcolors.EMPTY;  
+    },
     render:function(gridstate, r, c){
         for(i=0;i<r;i++){
             for(j=0;j<c;j++){

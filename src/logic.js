@@ -14,20 +14,30 @@ Logic = function(display, m, n){
 
 Logic.prototype = {
     constructor: Logic,
-    isStart:function(s){
+    isStart:function(id_){
+        id = id_.split(',');
+        s = [parseInt(id[0]), parseInt(id[1])];
         return this.start[0]==s[0] && this.start[1]==s[1];
     },
-    isEnd:function(e){
+    isEnd:function(id_){
+        id = id_.split(',');
+        e = [parseInt(id[0]), parseInt(id[1])];
         return this.end[0]==e[0] && this.end[1]==e[1];
     },
     updateStart:function(id_){
 
+        // set old start as empty
+        this.display.make_empty(String(this.start[0])+','+String(this.start[1]));
+        // set new start
         id = id_.split(',');
         this.start = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_start(id_);
     },
     updateEnd:function(id_){
         
+        // set old end as empty
+        this.display.make_empty(String(this.end[0])+','+String(this.end[1]));
+        // set new end
         id = id_.split(',');
         this.end = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_end(id_);
@@ -46,6 +56,11 @@ Logic.prototype = {
         }
         this.grid[this.start[0]*this.columns+this.start[1]]=globalcodes.START;
         this.grid[this.end[0]*this.columns+this.end[1]]=globalcodes.END;
+    },
+    refreshScreen:function(){
+        this.refresh();
+        this.display.render(this.grid, this.rows, this.columns);
+
     }
 };
 
