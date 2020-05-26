@@ -48,8 +48,3 @@ body{
     transition: 0.8s;
     /* animation: ease-in; */
 }
-
-.squareSelected {
-    background-color: rgb(92, 80, 255);
-    /* transition: 0.8s; */
-}

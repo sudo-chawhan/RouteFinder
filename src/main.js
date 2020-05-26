@@ -1,16 +1,19 @@
-function main(){
-    var grid_div = document.getElementById("griddiv");
-    n = 60
-    m = 30
-    h = window.innerHeight;
-    w = window.innerWidth-100;
+var grid_div = document.getElementById("griddiv");
+n = 60
+m = 30
+h = window.innerHeight;
+w = window.innerWidth-100;
 
-    var display = new Display(grid_div);
+var display = new Display(grid_div);
 
-    display.make_grids(m, n, String((h/m))+"px", String((w/n))+"px");
-   
-    // handling mouse input
-    // might need access to grid state therefore we'll put this in main
+display.make_grids(m, n, String((h/m))+"px", String((w/n))+"px");
+
+// making a new logics file
+logic = new Logic(display, m, n);
+
+// handling mouse input
+// might need access to grid state therefore we'll put this in main
+{
     wall = false;
     start = false;
     end = false;
@@ -21,8 +24,7 @@ function main(){
         
         // handle wall
         if(wall){
-            var temp = document.getElementById(this.id);
-            temp.style.backgroundColor = "rgb(92, 80, 255)";
+            display.make_wall(this.id);
         }
     };
     var onMouseUp = function(){
@@ -41,26 +43,16 @@ function main(){
         // handle wall
         wall = true;
         if(wall){
-            var temp = document.getElementById(this.id);
-            temp.style.backgroundColor = "rgb(92, 80, 255)";
-            // temp.classList.add("squareSelected");
+            display.make_wall(this.id);
         }
     };
     var onMouseClick = function(){
-        console.log(start);
-        console.log(end);
         
         if(start){
-            id = (this.id).split(',');
-            logic.start = [parseInt(id[0]), parseInt(id[1])];
-            var temp = document.getElementById(this.id);
-            temp.style.backgroundColor = "pink";
+            logic.updateStart(this.id);
             start = false;
         }else if(end){
-            id = (this.id).split(',');
-            logic.end = [parseInt(id[0]), parseInt(id[1])];
-            var temp = document.getElementById(this.id);
-            temp.style.backgroundColor = "red";
+            logic.updateEnd(this.id);
             end = false;
         }
     };
@@ -78,7 +70,6 @@ function main(){
         }
     };
 
-    logic = new Logic(display, m, n);
     // logic.update();
     addMouseEvents(m,n);
 
@@ -92,7 +83,6 @@ function main(){
         start = true;
         end = false;
         toggle = false;
-        console.log(start , end);
         
     };
     var endButton = document.getElementById("endnode");
@@ -101,14 +91,15 @@ function main(){
         end = true;
         toggle = false;
     };
-
-    var resize = function(){   
-        h = window.innerHeight;
-        w = window.innerWidth;
-        display.resize_grid(m, n, String((h/m))+"px", String((w/n))+"px");
-    };
-
-    window.addEventListener("resize", resize);
 }
+// end of mouse handlers
 
-main();
+var resize = function(){   
+    h = window.innerHeight;
+    w = window.innerWidth;
+    display.resize_grid(m, n, String((h/m))+"px", String((w/n))+"px");
+};
+
+window.addEventListener("resize", resize);
+
+

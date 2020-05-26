@@ -14,23 +14,31 @@ Display.prototype = {
         button.setAttribute("id", id);
         return button;
     },
+    make_start:function(id){
+        var temp = document.getElementById(id);
+        temp.style.backgroundColor = globalcolors.START;
+    },
+    make_end:function(id){
+        var temp = document.getElementById(id);
+        temp.style.backgroundColor = globalcolors.END;
+    },
+    make_wall:function(id){  
+        var temp = document.getElementById(id);
+        temp.style.backgroundColor = globalcolors.WALL;
+    },
     render:function(gridstate, r, c){
         for(i=0;i<r;i++){
             for(j=0;j<c;j++){
                 id = String(i)+","+String(j);
                 var temp = document.getElementById(id);
                 state = gridstate[i*c + j];
-                if(state == 100){   // end
-                    temp.style.backgroundColor = 'red';
-                }else if(state < 100 && state>0){   // visited
-                    temp.style.backgroundColor = 'rgb(0,'+String(10*state)+',0)';
-                }else if(state==600){   // path
-                    temp.style.backgroundColor = 'yellow';
-                }else if(state==700){   // start
-                    temp.style.backgroundColor = 'pink';
-                }
-                else{
-                    temp.style.backgroundColor = 'white';
+
+                switch(state){
+                    case globalcodes.START: temp.style.backgroundColor=globalcolors.START; break;
+                    case globalcodes.END: temp.style.backgroundColor=globalcolors.END; break;
+                    case globalcodes.PATH: temp.style.backgroundColor=globalcolors.PATH; break;
+                    case globalcodes.VISITED: temp.style.backgroundColor=globalcolors.VISITED; break;
+                    case globalcodes.EMPTY: temp.style.backgroundColor=globalcolors.EMPTY; break;
                 }
             }
         }
