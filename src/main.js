@@ -14,46 +14,48 @@ logic = new Logic(display, m, n);
 // handling mouse input
 // might need access to grid state therefore we'll put this in main
 {
-    wall = false;
-    start = false;
-    end = false;
+    var mouseC = {  // mouse controllers
+        wallc : false,
+        startc : false,
+        endc : false
+    };
     var onMouseOver = function(){    
         // handle start
-        if(start || end)
+        if(mouseC.startc || mouseC.endc)
             return;
         
         // handle wall
-        if(wall){
+        if(mouseC.wallc){
             display.make_wall(this.id);
         }
     };
     var onMouseUp = function(){
         // handle start
-        if(start || end)
+        if(mouseC.startc || mouseC.endc)
             return;
 
         // hanlde wall
-        wall = false;
+        mouseC.wallc = false;
     };
     var onMouseDown = function(){
         // handle start
-        if(start || end)
+        if(mouseC.startc || mouseC.endc)
             return;
 
         // handle wall
-        wall = true;
-        if(wall){
+        mouseC.wallc = true;
+        if(mouseC.wallc){
             display.make_wall(this.id);
         }
     };
     var onMouseClick = function(){
         
-        if(start){
+        if(mouseC.startc){
             logic.updateStart(this.id);
-            start = false;
-        }else if(end){
+            mouseC.startc = false;
+        }else if(mouseC.endc){
             logic.updateEnd(this.id);
-            end = false;
+            mouseC.endc = false;
         }
     };
 
@@ -80,16 +82,16 @@ logic = new Logic(display, m, n);
     };
     var startButton = document.getElementById("startnode");
     startButton.onclick = ()=>{
-        start = true;
-        end = false;
-        toggle = false;
+        mouseC.startc = true;
+        mouseC.endc = false;
+        mouseC.wallc = false;
         
     };
     var endButton = document.getElementById("endnode");
     endButton.onclick = ()=>{
-        start = false;
-        end = true;
-        toggle = false;
+        mouseC.startc = false;
+        mouseC.endc = true;
+        mouseC.wallc = false;
     };
 }
 // end of mouse handlers

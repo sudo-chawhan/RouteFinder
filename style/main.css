@@ -2,14 +2,12 @@ body{
     display: flex;
     flex-flow: column;
     height: 100%;
-    /* background-color: red; */
 }
 
 .navbar{
     height: 100px;
     width: inherit;
     background-color: rgb(54, 48, 117);
-    /* margin-bottom: 2px; */
 }
 
 .grids{
@@ -17,7 +15,6 @@ body{
     flex-grow: 1;
     height: 100%;
     width: inherit;
-    /* background-color: khaki; */
 }
 
 .board-row:after {
