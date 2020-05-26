@@ -20,7 +20,9 @@ logic.refreshScreen();
         startc : false,
         startcON: false,
         endc : false,
-        endcON:false
+        endcON:false,
+        wallc: true,
+        wallcON: false
     };
     var onMouseOver = function(){    
         // handle start
@@ -37,8 +39,8 @@ logic.refreshScreen();
                 logic.updateEnd(this.id);
                 logic.update();
             }
-            else{
-                display.make_wall(this.id);
+            else if(mouseC.wallcON){
+                logic.addWall(this.id);
             }
         }
     };
@@ -51,6 +53,7 @@ logic.refreshScreen();
         mouseC.togglec = false;
         mouseC.startcON = false;
         mouseC.endcON = false;
+        mouseC.wallcON  =false;
     };
     var onMouseDown = function(){
         // handle start
@@ -66,8 +69,9 @@ logic.refreshScreen();
             else if(logic.isEnd(this.id)){
                 mouseC.endcON = true;
             }
-            else{
-                display.make_wall(this.id);
+            else if(mouseC.wallc){
+                logic.addWall(this.id);
+                mouseC.wallcON = true;
             }
         }
     };

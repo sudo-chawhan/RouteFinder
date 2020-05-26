@@ -26,7 +26,7 @@ body{
 
 .square {
     background: #fff;
-    border: 1px solid rgb(187, 187, 187);
+    border: 1px solid rgb(170, 170, 170);
     float: left;
     font-weight: bold;
     margin-right: -1px;
@@ -34,6 +34,7 @@ body{
     padding: 0;
     text-align: center;
     transition: 0.8s;
+    /* border-radius: 50%; */
 }
 
 .square:focus {

@@ -39,7 +39,7 @@ function bfs(s, e, graph, m, n){
             if(fj!=0){
                 ni = fi;
                 nj = fj-1;
-                if(!visited[ni*n + nj]){
+                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -50,7 +50,7 @@ function bfs(s, e, graph, m, n){
             if(fi!=0){
                 ni = fi-1;
                 nj = fj;
-                if(!visited[ni*n + nj]){
+                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -61,7 +61,7 @@ function bfs(s, e, graph, m, n){
             if(fi!=m-1){
                 ni = fi+1;
                 nj = fj;
-                if(!visited[ni*n + nj]){
+                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -72,7 +72,7 @@ function bfs(s, e, graph, m, n){
             if(fj!=n-1){
                 ni = fi;
                 nj = fj+1;
-                if(!visited[ni*n + nj]){
+                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 

@@ -24,6 +24,12 @@ Logic.prototype = {
         e = [parseInt(id[0]), parseInt(id[1])];
         return this.end[0]==e[0] && this.end[1]==e[1];
     },
+    addWall: function(id_){
+        // set new start
+        id = id_.split(',');
+        this.grid[parseInt(id[0])*this.columns + parseInt(id[1])] = globalcodes.WALL;
+        this.display.make_wall(id_);
+    },
     updateStart:function(id_){
 
         // set old start as empty
@@ -42,9 +48,7 @@ Logic.prototype = {
         this.end = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_end(id_);
     },
-    update:function(){
-        this.refresh();
-        
+    update:function(){        
         this.grid = bfs(this.start, this.end, this.grid, this.rows, this.columns);
         this.display.render(this.grid, this.rows, this.columns);
     },
