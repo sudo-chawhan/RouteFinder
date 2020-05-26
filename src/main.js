@@ -1,9 +1,9 @@
 function main(){
     var grid_div = document.getElementById("griddiv");
-    n = 40
-    m = 20
+    n = 60
+    m = 30
     h = window.innerHeight;
-    w = window.innerWidth;
+    w = window.innerWidth-100;
 
     var display = new Display(grid_div);
 
@@ -11,26 +11,60 @@ function main(){
    
     // handling mouse input
     // might need access to grid state therefore we'll put this in main
-    toggle = false;
+    wall = false;
+    start = false;
+    end = false;
     var onMouseOver = function(){    
+        // handle start
+        if(start || end)
+            return;
         
-        if(toggle){
+        // handle wall
+        if(wall){
             var temp = document.getElementById(this.id);
             temp.style.backgroundColor = "rgb(92, 80, 255)";
         }
     };
     var onMouseUp = function(){
-        toggle = false;
+        // handle start
+        if(start || end)
+            return;
+
+        // hanlde wall
+        wall = false;
     };
     var onMouseDown = function(){
-        toggle = true;
+        // handle start
+        if(start || end)
+            return;
 
-        if(toggle){
+        // handle wall
+        wall = true;
+        if(wall){
             var temp = document.getElementById(this.id);
             temp.style.backgroundColor = "rgb(92, 80, 255)";
             // temp.classList.add("squareSelected");
         }
     };
+    var onMouseClick = function(){
+        console.log(start);
+        console.log(end);
+        
+        if(start){
+            id = (this.id).split(',');
+            logic.start = [parseInt(id[0]), parseInt(id[1])];
+            var temp = document.getElementById(this.id);
+            temp.style.backgroundColor = "pink";
+            start = false;
+        }else if(end){
+            id = (this.id).split(',');
+            logic.end = [parseInt(id[0]), parseInt(id[1])];
+            var temp = document.getElementById(this.id);
+            temp.style.backgroundColor = "red";
+            end = false;
+        }
+    };
+
     var addMouseEvents = function(r,c){
         for(i=0;i<r;i++){
             for(j=0;j<c;j++){
@@ -39,13 +73,34 @@ function main(){
                 temp.onmousedown = onMouseDown;
                 temp.onmouseup = onMouseUp;
                 temp.onmouseover = onMouseOver;
+                temp.onclick = onMouseClick;
             }
         }
     };
 
-    addMouseEvents(m,n);
     logic = new Logic(display, m, n);
-    logic.update();
+    // logic.update();
+    addMouseEvents(m,n);
+
+    // to start the route finder
+    var runButton = document.getElementById("run");
+    runButton.onclick = ()=>{
+        logic.update();
+    };
+    var startButton = document.getElementById("startnode");
+    startButton.onclick = ()=>{
+        start = true;
+        end = false;
+        toggle = false;
+        console.log(start , end);
+        
+    };
+    var endButton = document.getElementById("endnode");
+    endButton.onclick = ()=>{
+        start = false;
+        end = true;
+        toggle = false;
+    };
 
     var resize = function(){   
         h = window.innerHeight;

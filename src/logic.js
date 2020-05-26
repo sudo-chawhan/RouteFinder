@@ -24,7 +24,7 @@ function bfs(s, e, graph, m, n){
         step += 1;
         console.log("new");
         
-        while(queue[0]!=null){
+        while(queue[0]!=null && !found){
             first = queue.shift();
             console.log(first);
             
@@ -41,17 +41,17 @@ function bfs(s, e, graph, m, n){
             
             // add new elements
             var ni, nj;
-            if(fi!=0 && fj!=0){
-                ni = fi-1;
-                nj = fj-1;
-                if(!visited[ni*n + nj]){
-                    queue.push([ni,nj]);
-                    parent[ni*n + nj] = [fi, fj];
+            // if(fi!=0 && fj!=0){
+            //     ni = fi-1;
+            //     nj = fj-1;
+            //     if(!visited[ni*n + nj]){
+            //         queue.push([ni,nj]);
+            //         parent[ni*n + nj] = [fi, fj];
 
-                    visited[ni*n + nj] = true;
-                    newGraph[ni*n + nj]=step;    // visited
-                }
-            }
+            //         visited[ni*n + nj] = true;
+            //         newGraph[ni*n + nj]=step;    // visited
+            //     }
+            // }
             if(fj!=0){
                 ni = fi;
                 nj = fj-1;
@@ -74,17 +74,17 @@ function bfs(s, e, graph, m, n){
                     newGraph[ni*n + nj]=step;    // visited
                 }
             }
-            if(fi!=m-1 && fj!=n-1){
-                ni = fi+1;
-                nj = fj+1;
-                if(!visited[ni*n + nj]){
-                    queue.push([ni,nj]);
-                    parent[ni*n + nj] = [fi, fj];
+            // if(fi!=m-1 && fj!=n-1){
+            //     ni = fi+1;
+            //     nj = fj+1;
+            //     if(!visited[ni*n + nj]){
+            //         queue.push([ni,nj]);
+            //         parent[ni*n + nj] = [fi, fj];
 
-                    visited[ni*n + nj] = true;
-                    newGraph[ni*n + nj]=step;    // visited
-                }
-            }
+            //         visited[ni*n + nj] = true;
+            //         newGraph[ni*n + nj]=step;    // visited
+            //     }
+            // }
             if(fi!=m-1){
                 ni = fi+1;
                 nj = fj;
@@ -107,28 +107,28 @@ function bfs(s, e, graph, m, n){
                     newGraph[ni*n + nj]=step;    // visited
                 }
             }
-            if(fi!=0 && fj!=n-1){
-                ni = fi-1;
-                nj = fj+1;
-                if(!visited[ni*n + nj]){
-                    queue.push([ni,nj]);
-                    parent[ni*n + nj] = [fi, fj];
+            // if(fi!=0 && fj!=n-1){
+            //     ni = fi-1;
+            //     nj = fj+1;
+            //     if(!visited[ni*n + nj]){
+            //         queue.push([ni,nj]);
+            //         parent[ni*n + nj] = [fi, fj];
 
-                    visited[ni*n + nj] = true;
-                    newGraph[ni*n + nj]=step;    // visited
-                }
-            }
-            if(fi!=m-1 && fj!=0){
-                ni = fi+1;
-                nj = fj-1;
-                if(!visited[ni*n + nj]){
-                    queue.push([ni,nj]);
-                    parent[ni*n + nj] = [fi, fj];
+            //         visited[ni*n + nj] = true;
+            //         newGraph[ni*n + nj]=step;    // visited
+            //     }
+            // }
+            // if(fi!=m-1 && fj!=0){
+            //     ni = fi+1;
+            //     nj = fj-1;
+            //     if(!visited[ni*n + nj]){
+            //         queue.push([ni,nj]);
+            //         parent[ni*n + nj] = [fi, fj];
 
-                    visited[ni*n + nj] = true;
-                    newGraph[ni*n + nj]=step;    // visited
-                }
-            }
+            //         visited[ni*n + nj] = true;
+            //         newGraph[ni*n + nj]=step;    // visited
+            //     }
+            // }
             // if !visited
             //      add vertex
         }
@@ -161,13 +161,21 @@ Logic.prototype = {
     constructor: Logic,
     update:function(){
         // console.log("first", this.grid);
+        this.refresh();
         
         this.grid = bfs(this.start, this.end, this.grid, this.rows, this.columns);
         // console.log("new", this.grid);
         console.log(this.grid[123]);
-        
-        
         this.display.render(this.grid, this.rows, this.columns);
+    },
+    refresh:function(){
+        for(i=0;i<this.rows;i++){
+            for(j=0;j<this.columns;j++){
+                this.grid[i*this.columns+j]=0;
+            }
+        }
+        this.grid[this.start[0]*this.columns+this.start[1]]=700;
+        this.grid[this.end[0]*this.columns+this.end[1]]=100;
     }
 };
 

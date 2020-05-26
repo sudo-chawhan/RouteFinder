@@ -20,13 +20,14 @@ Display.prototype = {
                 id = String(i)+","+String(j);
                 var temp = document.getElementById(id);
                 state = gridstate[i*c + j];
-                if(state == 100){
-                    // console.log(i*r+c);
+                if(state == 100){   // end
                     temp.style.backgroundColor = 'red';
-                }else if(state < 100 && state>0){
+                }else if(state < 100 && state>0){   // visited
                     temp.style.backgroundColor = 'rgb(0,'+String(10*state)+',0)';
-                }else if(state==600){
+                }else if(state==600){   // path
                     temp.style.backgroundColor = 'yellow';
+                }else if(state==700){   // start
+                    temp.style.backgroundColor = 'pink';
                 }
                 else{
                     temp.style.backgroundColor = 'white';
