@@ -48,14 +48,17 @@ Logic.prototype = {
         this.end = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_end(id_);
     },
-    update:function(){        
+    update:function(){      
+        this.refresh();  
         this.grid = bfs(this.start, this.end, this.grid, this.rows, this.columns);
         this.display.render(this.grid, this.rows, this.columns);
     },
     refresh:function(){
         for(i=0;i<this.rows;i++){
             for(j=0;j<this.columns;j++){
-                this.grid[i*this.columns+j]=globalcodes.EMPTY;
+                if(this.grid[i*this.columns+j] != globalcodes.WALL){
+                    this.grid[i*this.columns+j]=globalcodes.EMPTY;
+                }
             }
         }
         this.grid[this.start[0]*this.columns+this.start[1]]=globalcodes.START;

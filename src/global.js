@@ -3,8 +3,8 @@ const globalcolors = {
     START:'green',
     END:'red',
     PATH:'yellow',
-    VISITED:'pink',
-    WALL:"rgb(92, 80, 255)",
+    WALL:'brown',
+    VISITED:"rgb(92, 80, 255)",
     
 };
 
