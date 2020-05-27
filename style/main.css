@@ -7,7 +7,7 @@ body{
 .navbar{
     height: 100px;
     width: inherit;
-    background-color: rgb(54, 48, 117);
+    background-color:#262626;
 }
 
 .grids{
@@ -25,16 +25,18 @@ body{
 }
 
 .square {
-    background: #fff;
-    border: 1px solid rgb(170, 170, 170);
+    border: 0.8px solid rgb(170, 170, 170);
     float: left;
+    background-size: 0%;
+    background-repeat: no-repeat;
+    background-position: center;
     font-weight: bold;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
+    color: blue;
     text-align: center;
-    transition: 0.8s;
-    /* border-radius: 50%; */
+    transition: 3s ease;
 }
 
 .square:focus {
@@ -44,5 +46,19 @@ body{
 .square:hover {
     background-color: coral;
     transition: 0.8s;
-    /* animation: ease-in; */
+}
+
+.bubble-effect{
+    background-size: 200%;
+}
+
+.popout-effect{
+    background-size: 100%;
+}
+.noborder {
+    border: none;
+}
+
+.lightborder {
+    border-color: rgb(226, 226, 226);
 }

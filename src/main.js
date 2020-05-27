@@ -1,6 +1,6 @@
 var grid_div = document.getElementById("griddiv");
-n = 60
-m = 30
+n = 40
+m = 20
 h = window.innerHeight;
 w = window.innerWidth-100;
 

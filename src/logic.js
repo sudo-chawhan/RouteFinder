@@ -33,7 +33,9 @@ Logic.prototype = {
     updateStart:function(id_){
 
         // set old start as empty
-        this.display.make_empty(String(this.start[0])+','+String(this.start[1]));
+        startId = String(this.start[0])+','+String(this.start[1]);
+        this.display.delete_start(startId);
+        this.display.make_empty(startId);
         // set new start
         id = id_.split(',');
         this.start = [parseInt(id[0]), parseInt(id[1])];
@@ -42,7 +44,9 @@ Logic.prototype = {
     updateEnd:function(id_){
         
         // set old end as empty
-        this.display.make_empty(String(this.end[0])+','+String(this.end[1]));
+        endId = String(this.end[0])+','+String(this.end[1]);
+        this.display.delete_start(endId);
+        this.display.make_empty(endId);
         // set new end
         id = id_.split(',');
         this.end = [parseInt(id[0]), parseInt(id[1])];
