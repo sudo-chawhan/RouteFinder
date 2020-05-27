@@ -53,7 +53,7 @@ Logic.prototype = {
         this.display.make_end(id_);
     },
     update:function(){      
-        this.refresh();  
+        this.refreshScreen();  
         this.grid = bfs(this.start, this.end, this.grid, this.rows, this.columns);
         this.display.render(this.grid, this.rows, this.columns);
     },

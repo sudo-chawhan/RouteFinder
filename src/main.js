@@ -2,7 +2,7 @@ var grid_div = document.getElementById("griddiv");
 n = 40
 m = 20
 h = window.innerHeight;
-w = window.innerWidth-100;
+w = window.innerWidth;
 
 var display = new Display(grid_div);
 

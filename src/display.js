@@ -69,7 +69,9 @@ Display.prototype = {
     },
     make_empty:function(id){
         var temp = document.getElementById(id);
-        temp.style.backgroundColor = globalcolors.EMPTY;  
+        temp.style.backgroundImage = "none";
+        temp.style.backgroundColor = "transparent"; 
+        temp.classList.remove("noborder"); 
     },
     make_visited:function(id){
         var temp = document.getElementById(id);
