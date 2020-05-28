@@ -1,4 +1,6 @@
-function bfs(s, e, graph, m, n){
+const sleep = m => new Promise(r => setTimeout(r, m))
+
+async function bfs(s, e, graph, m, n, display){
     newGraph = graph;
     parent = new Array(m*n);
     visited = new Array(m*n);
@@ -83,14 +85,16 @@ function bfs(s, e, graph, m, n){
         }
         queue.shift();
         queue.push(null);
+
+        await sleep(300);
+        display.render(newGraph, m, n);
     }
 
     pathnodes = e;
     while(parent[pathnodes[0]*n + pathnodes[1]]!=null){
         pathnodes = parent[pathnodes[0]*n + pathnodes[1]];
         console.log(pathnodes);
-        
-        newGraph[pathnodes[0]*n + pathnodes[1]] = globalcodes.PATH;      // set as path node
+        newGraph[pathnodes[0]*n + pathnodes[1]] = globalcodes.PATH;       // set as path node
     }
     newGraph[s[0]*n + s[1]] = globalcodes.START;
     return newGraph;

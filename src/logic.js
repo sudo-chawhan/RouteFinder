@@ -52,9 +52,9 @@ Logic.prototype = {
         this.end = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_end(id_);
     },
-    update:function(){      
+    update:async function(){      
         this.refreshScreen();  
-        this.grid = bfs(this.start, this.end, this.grid, this.rows, this.columns);
+        await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display);
         this.display.render(this.grid, this.rows, this.columns);
     },
     refresh:function(){
