@@ -25,11 +25,21 @@ Logic.prototype = {
         e = [parseInt(id[0]), parseInt(id[1])];
         return this.end[0]==e[0] && this.end[1]==e[1];
     },
+    isWall:function(id_){
+        id = id_.split(',');
+        return this.grid[parseInt(id[0])*this.columns + parseInt(id[1])] == globalcodes.WALL;
+    },
     addWall: function(id_){
         // set new start
         id = id_.split(',');
         this.grid[parseInt(id[0])*this.columns + parseInt(id[1])] = globalcodes.WALL;
         this.display.make_wall(id_);
+    },
+    deleteWall: function(id_){
+        // set new start
+        id = id_.split(',');
+        this.grid[parseInt(id[0])*this.columns + parseInt(id[1])] = globalcodes.EMPTY;
+        this.display.delete_wall(id_);
     },
     updateStart:function(id_){
 

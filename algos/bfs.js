@@ -94,6 +94,7 @@ async function bfs(s, e, graph, m, n, display, animate){
 
     pathnodes = e;
     while(parent[pathnodes[0]*n + pathnodes[1]]!=null){
+        
         pathnodes = parent[pathnodes[0]*n + pathnodes[1]];
         newGraph[pathnodes[0]*n + pathnodes[1]] = globalcodes.PATH;       // set as path node
         if(animate){

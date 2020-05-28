@@ -43,7 +43,13 @@ logic.refreshScreen();
                 logic.update(false);
             }
             else if(mouseC.wallcON){
-                logic.addWall(this.id);
+                if(logic.isStart(this.id) || logic.isEnd(this.id))
+                    return;
+                if(logic.isWall(this.id)){
+                    logic.deleteWall(this.id);
+                }
+                else
+                    logic.addWall(this.id);
             }
         }
     };
@@ -79,7 +85,13 @@ logic.refreshScreen();
                 mouseC.endcON = true;
             }
             else if(mouseC.wallc){
-                logic.addWall(this.id);
+                if(logic.isStart(this.id) || logic.isEnd(this.id))
+                    return;
+                if(logic.isWall(this.id)){
+                    logic.deleteWall(this.id);
+                }
+                else
+                    logic.addWall(this.id);
                 mouseC.wallcON = true;
             }
         }
