@@ -1,6 +1,6 @@
 var grid_div = document.getElementById("griddiv");
-n = 40
-m = 20
+n = 60
+m = 30
 h = window.innerHeight;
 w = window.innerWidth;
 
@@ -22,9 +22,12 @@ logic.refreshScreen();
         endc : false,
         endcON:false,
         wallc: true,
-        wallcON: false
+        wallcON: false,
     };
     var onMouseOver = function(){    
+        if(logic.running)
+            return;
+            
         // handle start
         if(mouseC.startc || mouseC.endc)
             return;
@@ -33,11 +36,11 @@ logic.refreshScreen();
         if(mouseC.togglec){
             if(mouseC.startcON){
                 logic.updateStart(this.id);
-                logic.update();
+                logic.update(false);
             }
             else if(mouseC.endcON){
                 logic.updateEnd(this.id);
-                logic.update();
+                logic.update(false);
             }
             else if(mouseC.wallcON){
                 logic.addWall(this.id);
@@ -45,6 +48,9 @@ logic.refreshScreen();
         }
     };
     var onMouseUp = function(){
+        if(logic.running)
+            return;
+
         // handle start
         if(mouseC.startc || mouseC.endc)
             return;
@@ -56,6 +62,9 @@ logic.refreshScreen();
         mouseC.wallcON  =false;
     };
     var onMouseDown = function(){
+        if(logic.running)
+            return;
+            
         // handle start
         if(mouseC.startc || mouseC.endc)
             return;
@@ -76,6 +85,8 @@ logic.refreshScreen();
         }
     };
     var onMouseClick = function(){
+        if(logic.running)
+            return;
         
         if(mouseC.startc){
             logic.updateStart(this.id);
@@ -105,7 +116,9 @@ logic.refreshScreen();
     // to start the route finder
     var runButton = document.getElementById("run");
     runButton.onclick = ()=>{
-        logic.update();
+        if(logic.running)
+            return;
+        logic.update(true);
     };
     var startButton = document.getElementById("startnode");
     startButton.onclick = ()=>{

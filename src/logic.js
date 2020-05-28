@@ -10,6 +10,7 @@ Logic = function(display, m, n){
     this.grid = gr;
     this.start = [5,5];
     this.end = [10,10];
+    this.running = false;
 };
 
 Logic.prototype = {
@@ -52,21 +53,29 @@ Logic.prototype = {
         this.end = [parseInt(id[0]), parseInt(id[1])];
         this.display.make_end(id_);
     },
-    update:async function(){      
+    update:async function(animate){      
+        this.running = true;
         this.refreshScreen();  
-        await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display);
+        await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate);
         this.display.render(this.grid, this.rows, this.columns);
+        this.running = false;
     },
     refresh:function(){
         for(i=0;i<this.rows;i++){
             for(j=0;j<this.columns;j++){
-                if(this.grid[i*this.columns+j] != globalcodes.WALL){
-                    this.grid[i*this.columns+j]=globalcodes.EMPTY;
+                id = String(i)+','+String(j);
+                switch(this.grid[i*this.columns+j]){
+                    case globalcodes.START: this.display.delete_start(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
+                    case globalcodes.END: this.display.delete_end(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
+                    case globalcodes.PATH: this.display.delete_path(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
+                    case globalcodes.VISITED: this.display.delete_visited(id); this.grid[i*this.columns+j]=globalcodes.EMPTY;  break;
+                    case globalcodes.EMPTY: break;
                 }
             }
         }
         this.grid[this.start[0]*this.columns+this.start[1]]=globalcodes.START;
         this.grid[this.end[0]*this.columns+this.end[1]]=globalcodes.END;
+        
     },
     refreshScreen:function(){
         this.refresh();

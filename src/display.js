@@ -75,8 +75,13 @@ Display.prototype = {
     },
     make_visited:function(id){
         var temp = document.getElementById(id);
-        temp.classList.add("lightborder");
+        // temp.classList.add("lightborder");
         temp.style.backgroundColor = globalcolors.VISITED;  
+    },
+    delete_visited:function(id){
+        var temp = document.getElementById(id);
+        // temp.classList.add("lightborder");
+        // temp.style.backgroundColor = globalcolors.VISITED;  
     },
     render:function(gridstate, r, c){
         for(i=0;i<r;i++){
