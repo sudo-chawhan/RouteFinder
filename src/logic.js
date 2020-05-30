@@ -74,12 +74,16 @@ Logic.prototype = {
         for(i=0;i<this.rows;i++){
             for(j=0;j<this.columns;j++){
                 id = String(i)+','+String(j);
-                switch(this.grid[i*this.columns+j]){
+                state = this.grid[i*this.columns+j];
+                switch(state){
                     case globalcodes.START: this.display.delete_start(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
                     case globalcodes.END: this.display.delete_end(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
-                    case globalcodes.PATH: this.display.delete_path(id); this.grid[i*this.columns+j]=globalcodes.EMPTY; break;
                     case globalcodes.VISITED: this.display.delete_visited(id); this.grid[i*this.columns+j]=globalcodes.EMPTY;  break;
                     case globalcodes.EMPTY: break;
+                    default:
+                        if(globalcodes.isPath(state)){
+                            this.display.delete_path(id); this.grid[i*this.columns+j]=globalcodes.EMPTY;
+                        }
                 }
             }
         }

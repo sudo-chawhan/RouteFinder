@@ -93,14 +93,40 @@ async function bfs(s, e, graph, m, n, display, animate){
     }
 
     pathnodes = e;
+    path = [e]; // path: [e, ...., s]
     while(parent[pathnodes[0]*n + pathnodes[1]]!=null){
         
         pathnodes = parent[pathnodes[0]*n + pathnodes[1]];
-        newGraph[pathnodes[0]*n + pathnodes[1]] = globalcodes.PATH;       // set as path node
+        // newGraph[pathnodes[0]*n + pathnodes[1]] = globalcodes.PATH;       // set as path node
+        path.push(pathnodes);
+        console.log(pathnodes);
+        
+        // if(animate){
+        //     await sleep(50);
+        //     display.render(newGraph, m, n);
+        // }
+    }
+
+
+    first = path[path.length-1];
+    for(i=path.length-2;i>=1;i--){
+        second = path[i];
+        third = path[i-1];
+        console.log(first, second, third);
+        
+        dir = helper.getDirection(first, second, third);
+        if(dir==undefined)  // error
+        {
+            console.log("error");
+            
+            return newGraph;
+        }
+        newGraph[second[0]*n + second[1]] = dir;
         if(animate){
             await sleep(50);
-            display.render(newGraph, m, n);
+            display.make_path(String(second[0])+","+String(second[1]), dir);
         }
+        first = second;
     }
     newGraph[s[0]*n + s[1]] = globalcodes.START;
     return newGraph;

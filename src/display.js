@@ -52,11 +52,18 @@ Display.prototype = {
         temp.style.backgroundImage = "none";
         temp.classList.remove("popout-effect");
     },
-    make_path:function(id){
+    make_path:function(id, state){
         var temp = document.getElementById(id);
         temp.classList.add("noborder");
+        switch(state){
+            case globalcodes.PATHLR: temp.style.backgroundImage = "url(../files/imgs/pathlr.png)"; break;
+            case globalcodes.PATHUD: temp.style.backgroundImage = "url(../files/imgs/pathud.png)"; break;
+            case globalcodes.PATHLU: temp.style.backgroundImage = "url(../files/imgs/pathlu.png)"; break;
+            case globalcodes.PATHLD: temp.style.backgroundImage = "url(../files/imgs/pathld.png)"; break;
+            case globalcodes.PATHRU: temp.style.backgroundImage = "url(../files/imgs/pathru.png)"; break;
+            case globalcodes.PATHRD: temp.style.backgroundImage = "url(../files/imgs/pathrd.png)"; break;
 
-        temp.style.backgroundImage = "url(../files/imgs/green-circle.png)";
+        }
         temp.classList.add("bubble-effect");
     },
     delete_path:function(id){
@@ -93,9 +100,11 @@ Display.prototype = {
                 switch(state){
                     case globalcodes.START: this.make_start(id); break;
                     case globalcodes.END: this.make_end(id); break;
-                    case globalcodes.PATH: this.make_path(id); break;
                     case globalcodes.VISITED: this.make_visited(id); break;
                     case globalcodes.EMPTY: this.make_empty(id); break;
+                    default: if(globalcodes.isPath(state)){
+                        this.make_path(id, state);
+                    }
                 }
             }
         }
