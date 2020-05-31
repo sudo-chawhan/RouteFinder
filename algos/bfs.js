@@ -9,7 +9,7 @@ async function bfs(s, e, graph, m, n, display, animate){
         parent[i] = null;
     }
 
-    newGraph[s[0]*n + s[1]] = 400;
+    newGraph[s[0]*n + s[1]] = globalcodes.START;
     
     var step = 0;
     queue = [];

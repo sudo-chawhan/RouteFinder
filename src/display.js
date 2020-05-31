@@ -16,10 +16,13 @@ Display.prototype = {
         return button;
     },
     make_start:function(id){
+        this.delete_visited(id);
+
         var temp = document.getElementById(id);
         
-        temp.style.backgroundImage = "url(../files/imgs/target.png)";
+        temp.style.backgroundImage = "url(../files/imgs/home.png)";
         temp.classList.add("popout-effect");
+        temp.style.opacity = "1";
     },
     delete_start:function(id){
         var temp = document.getElementById(id);
@@ -28,18 +31,23 @@ Display.prototype = {
         temp.classList.remove("popout-effect");
     },
     make_end:function(id){
+        this.delete_visited(id);
+
         var temp = document.getElementById(id);
         
         temp.style.backgroundImage = "url(../files/imgs/target.png)";
         temp.classList.add("popout-effect");
+        temp.style.opacity = "1";
     },
     delete_end:function(id){
+        
         var temp = document.getElementById(id);
         
         temp.style.backgroundImage = "none";
         temp.classList.remove("popout-effect");
     },
     make_wall:function(id){  
+        this.delete_visited(id);
         var temp = document.getElementById(id);
         // temp.classList.add("noborder");
         temp.style.backgroundImage = "url(../files/imgs/mountain.png)";
@@ -53,6 +61,7 @@ Display.prototype = {
         temp.classList.remove("popout-effect");
     },
     make_path:function(id, state){
+        this.delete_visited(id);
         var temp = document.getElementById(id);
         temp.classList.add("noborder");
         switch(state){
@@ -65,6 +74,7 @@ Display.prototype = {
 
         }
         temp.classList.add("bubble-effect");
+        temp.backgroundColor = 'transparent';
     },
     delete_path:function(id){
         var temp = document.getElementById(id);
@@ -84,11 +94,13 @@ Display.prototype = {
         var temp = document.getElementById(id);
         // temp.classList.add("lightborder");
         temp.style.backgroundColor = globalcolors.VISITED;  
+        temp.style.opacity = "0.2";
     },
     delete_visited:function(id){
         var temp = document.getElementById(id);
+        temp.style.opacity = "1";
         // temp.classList.add("lightborder");
-        // temp.style.backgroundColor = globalcolors.VISITED;  
+        temp.style.backgroundColor = "transparent";  
     },
     render:function(gridstate, r, c){
         for(i=0;i<r;i++){

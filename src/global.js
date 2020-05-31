@@ -1,5 +1,5 @@
 const globalcolors = {
-    EMPTY:'white',
+    EMPTY:'rgb(245,173,92)',
     START:'green',
     END:'red',
     PATH:'yellow',
