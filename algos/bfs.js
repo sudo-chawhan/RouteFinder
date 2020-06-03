@@ -1,7 +1,6 @@
 const sleep = m => new Promise(r => setTimeout(r, m))
 
-async function bfs(s, e, graph, m, n, display, animate){
-    newGraph = graph;
+async function bfs(s, e, newGraph, m, n, display, animate){
     parent = new Array(m*n);
     visited = new Array(m*n);
     for(i=0;i<m*n;i++){
@@ -41,7 +40,7 @@ async function bfs(s, e, graph, m, n, display, animate){
             if(fj!=0){
                 ni = fi;
                 nj = fj-1;
-                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
+                if(!visited[ni*n + nj] && newGraph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -52,7 +51,7 @@ async function bfs(s, e, graph, m, n, display, animate){
             if(fi!=0){
                 ni = fi-1;
                 nj = fj;
-                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
+                if(!visited[ni*n + nj] && newGraph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -63,7 +62,7 @@ async function bfs(s, e, graph, m, n, display, animate){
             if(fi!=m-1){
                 ni = fi+1;
                 nj = fj;
-                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
+                if(!visited[ni*n + nj] && newGraph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 
@@ -74,7 +73,7 @@ async function bfs(s, e, graph, m, n, display, animate){
             if(fj!=n-1){
                 ni = fi;
                 nj = fj+1;
-                if(!visited[ni*n + nj] && graph[ni*n + nj]!=globalcodes.WALL){
+                if(!visited[ni*n + nj] && newGraph[ni*n + nj]!=globalcodes.WALL){
                     queue.push([ni,nj]);
                     parent[ni*n + nj] = [fi, fj];
 

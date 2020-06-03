@@ -5,9 +5,13 @@ class Node {
   }
 }
 
-class PQ {
+class PriorityQ {
   constructor() {
     this.values = [];
+  }
+
+  empty(){
+    return this.values.length==0;
   }
   enqueue(val, priority) {
     let newNode = new Node(val, priority);
@@ -62,3 +66,19 @@ class PQ {
     return max;
   }
 }
+
+// var pq = new PriorityQ();
+// pq.enqueue([[0,0],null], 0);
+// a = pq.dequeue();
+// pq.enqueue([[2,2],null], -3);
+// console.log(a);
+// console.log(pq.dequeue());
+
+// console.log(pq.dequeue());
+
+// console.log(pq.dequeue());
+// pq.enqueue([[2,3],null], -2);
+
+// console.log(pq.dequeue());
+
+

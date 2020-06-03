@@ -66,8 +66,15 @@ Logic.prototype = {
     update:async function(animate){      
         this.running = true;
         this.refreshScreen();  
-        await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate);
-        this.display.render(this.grid, this.rows, this.columns);
+        val = document.getElementById("algorithms").value;
+        switch(val){
+            case "bfs":
+                await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); break;
+            case "dijkstra":
+                await dijkstra(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); break;    
+        }
+            
+        this.display.render(this.grid, this.rows, this.columns);    
         this.running = false;
     },
     refresh:function(){

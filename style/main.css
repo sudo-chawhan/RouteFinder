@@ -1,21 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+*{
+    padding:0;
+    margin: 0;
+}
+
 html{
     background-image: url("../files/imgs/background.png");
     background-size: auto 100%;
     background-repeat: repeat-x;
     background-position: left;
+    box-sizing: border-box;
+    font-family: 'Satisfy', cursive;
 }
 
 body{
     display: flex;
     flex-flow: column;
     height: 100%;
-    
 }
 
 .navbar{
-    height: 100px;
+    padding: 8px;
+    height: fit-content;
     width: inherit;
-    background-color:#262626;
+    background-color:rgb(38, 29, 16, 0.8);
+    /* text-align: center; */
+    display: inline-block;
+    /* opacity: 0.8; */
+    /* border-radius: 10px; */
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px; */
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.options_div{
+    margin-top: 16px;
+}
+
+.options_div ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    /* padding: 2% */
+    /* text-align: center; */
+}
+
+.options_div ul{
+    list-style: none;
+}
+
+.options_div li{
+    display: inline-block;
+    padding: 0px 10px;
+}
+
+.algorithms{
+    background-color: transparent;
+    color: white;
+    border: none;
+    list-style: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+}
+
+.button1{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    padding: 10px;
+    background-color: transparent;
+    color: rgb(228, 228, 228);
+    /* border-radius: 20px; */
+    cursor: pointer;
+    border: none;
+}
+
+#startnode:hover {
+    color: rgb(131, 255, 137);
+}
+#run:hover {
+    color: rgb(131, 160, 255);
+}
+#endnode:hover {
+    color: rgb(255, 131, 131);
 }
 
 .grids{
@@ -33,18 +109,16 @@ body{
 }
 
 .square {
-    border: 0.8px solid rgb(170, 170, 170);
+    border: 0.8px solid rgb(184, 184, 184,0.8);
     float: left;
     background-size: 0%;
     background-repeat: no-repeat;
     background-position: center;
-    font-weight: bold;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
-    color: blue;
     text-align: center;
-    transition: 1s ease;
+    transition: 0.5s ease;
 }
 
 .square:focus {
