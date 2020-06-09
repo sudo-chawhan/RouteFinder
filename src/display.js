@@ -6,6 +6,10 @@ Display = function(gridDiv){
 Display.prototype = {
     constructor: Display,
     // handling display
+    edit_algoinfo:function(str){
+        var algoinfo = document.getElementById("info");
+        algoinfo.innerText = str;
+    },
     make_button:function(h, w, id){
         var button = document.createElement("button");
         button.classList.add("square");

@@ -69,9 +69,15 @@ Logic.prototype = {
         val = document.getElementById("algorithms").value;
         switch(val){
             case "bfs":
-                await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); break;
+                await bfs(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); 
+                this.display.edit_algoinfo("BFS algorithm traverses an unwaited graph in a breadthward motion and gives guaranteed shortest path"); break;
             case "dijkstra":
-                await dijkstra(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); break;    
+                await dijkstra(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate);
+                this.display.edit_algoinfo("Dijkstra's Algorithm is a greedy algorithm and gives guaranteed shortest path"); break;    
+            case "astar":
+                await astar(this.start, this.end, this.grid, this.rows, this.columns, this.display, animate); 
+                this.display.edit_algoinfo("A* Algorithm is a heuristics based super fast algorithm but does not necesserily give a shortest path"); break;    
+            
         }
             
         this.display.render(this.grid, this.rows, this.columns);    

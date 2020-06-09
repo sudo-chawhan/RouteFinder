@@ -12,7 +12,6 @@ html{
     background-repeat: repeat-x;
     background-position: left;
     box-sizing: border-box;
-    font-family: 'Satisfy', cursive;
 }
 
 body{
@@ -26,18 +25,30 @@ body{
     height: fit-content;
     width: inherit;
     background-color:rgb(38, 29, 16, 0.8);
-    /* text-align: center; */
     display: inline-block;
-    /* opacity: 0.8; */
-    /* border-radius: 10px; */
-    /* border-top-left-radius: 10px;
-    border-top-right-radius: 10px; */
     
+}
+
+.navbar-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row;
+}
+
+.navbar-top p{
+    background-color: rgba(22, 17, 9, 0.8);
+    padding: 10px;
+    text-align: center;
+    width: 70%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .logo{
     display: flex;
     align-items: center;
+    font-family: 'Satisfy', cursive;
 }
 
 .options_div{
@@ -70,6 +81,10 @@ body{
     list-style: none;
     font-family: 'Courier New', Courier, monospace;
     font-size: medium;
+}
+
+.algorithms option{
+    color: black;
 }
 
 .button1{
